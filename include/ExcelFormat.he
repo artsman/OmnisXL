@@ -1,0 +1,40 @@
+// The MIT License (MIT)
+
+// Copyright (c) 2014 Arts Management Systems Ltd.
+
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
+#include <extcomp.he>
+#include "OmnisTools.he"
+
+#ifndef NV_OBJ_TEMPLATE_HE
+#define NV_OBJ_TEMPLATE_HE
+
+// Resources for constants
+const static qshort kConstResourcePrefix = 23000,
+                    kConstResourceStart  = 23001,
+                    kConstResourceEnd    = 24999;
+
+class NVObjBase;  // To prevent circular include reference with NVObjBase.he declare this here.
+
+NVObjBase* createObject( qlong propID, qobjinst qo, OmnisTools::tThreadData* );
+void copyObject( qlong propID, objCopyInfo* copyInfo, OmnisTools::tThreadData* );
+void removeObject( qlong propID, NVObjBase* nvObj );
+
+#endif /* NV_OBJ_TEMPLATE_HE */

@@ -1,0 +1,24 @@
+------------------------------------------
+BUILD NOTES
+------------------------------------------
+
+On Windows the ExcelFormat project must be built with different libxl libraries for Release and Debug.
+
+Debug
+-------
+libxl-debug.lib -> points/links to -> libxl.dll
+
+Release
+-------
+libxl.lib
+
+The build systems are different because libxl.lib is a static library built with specific compiler 
+options. (Multi-Threaded DLL /MD and No Debug).  While it may be possible to get a debug version that
+is similar to the release version, it actually makes the Debug process easier since builds occur more 
+quickly then they would with a Release version.  The LibXL-Headers/setup.h file contains the flags that
+determine if LibXL will be linked statically(Release) or dynamically(Debug).
+
+There are no special requirements for running Omnis Studio on Windows for the Release version; Just 
+put the ExcelFormat.dll in the xcomp folder.  For the Debug version you must not only put the ExcelFormat.dll
+in the xcomp folder(done for you by Visual Studio 2008 when OMNIS_XCOMP_PATH is setup), you must also place libxl.dll 
+in the Omnis Studio folder next to the omnis.exe executable (This must be done manually).

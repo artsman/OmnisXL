@@ -1,0 +1,218 @@
+// The MIT License (MIT)
+
+// Copyright (c) 2014 Arts Management Systems Ltd.
+
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
+//Omnis includes
+#include <extcomp.he>
+#include <chrbasic.he>
+#include <boost/shared_ptr.hpp>
+
+//Std Library includes
+#include <string>
+#include <map>
+
+#ifndef OMNIS_TOOLS_HE_
+#define OMNIS_TOOLS_HE_
+
+namespace OmnisTools {
+	
+	// Generic result type for returning error status
+	typedef qlong tResult;
+	
+	// Thread data struct is an ease-of-use tool to keep track of the current context, 
+	// rather than just passing eci everywhere
+	struct tThreadData 
+	{
+		tThreadData( EXTCompInfo* pEci ) { mEci = pEci, mCurMethodName = ""; mExtraErrorText = ""; }
+		
+		EXTCompInfo* mEci;
+		std::string mCurMethodName;
+		std::string mExtraErrorText;
+	}; 
+	
+	// Struct for managing EXTfldval types
+	struct FieldValType {
+		ffttype valType;
+		qshort valSubType;
+	};
+	
+	// Parameter helpers
+	qbool getParamVar( tThreadData* pThreadData, qshort pParamNum, EXTfldval& pOutVar );
+	qbool getParamVar( EXTCompInfo* pEci, qshort pParamNum, EXTfldval& pOutVar );
+	qbool getParamList( tThreadData* pThreadData, qshort pParamNum, EXTqlist& pOutList, qbool pCanBeRow = qfalse );
+	qbool getParamBool( tThreadData* pThreadData, qshort pParamNum, qbool& pOutBool );
+	qbool getParamShort( tThreadData* pThreadData, qshort pParamNum, qshort& pOutShort );
+	qbool getParamLong( tThreadData* pThreadData, qshort pParamNum, qlong& pOutInteger );
+	
+	FieldValType getType(EXTfldval&);
+	
+	// List helpers
+	qbool isList( EXTfldval& pFVal, qbool pCanBeRow = qfalse);
+	
+	// qbool/bool helpers
+	qbool getQBoolFromBool(bool);
+	bool getBoolFromQBool(qbool);
+	
+	// std::wstring/EXTfldval helpers
+	std::wstring getWStringFromEXTFldVal(EXTfldval& fVal);
+	void getEXTFldValFromWString(EXTfldval&, const std::wstring);
+    void getEXTFldValFromWChar(EXTfldval&, const wchar_t*);
+	
+	// std::string/EXTfldval helpers
+	std::string getStringFromEXTFldVal(EXTfldval&);
+	void getEXTFldValFromString(EXTfldval&, const std::string);
+    void getEXTFldValFromChar(EXTfldval&, const char*);
+	
+	// std::string/qchar* helpers
+	qchar* getQCharFromString( const std::string readString, qlong &retLength );
+	qchar* getQCharFromWString( const std::wstring readString, qlong &retLength );
+	
+    // strxxx helpers
+    str15 initStr15(const char* in);
+    str31 initStr31(const char* in);
+    str80 initStr80(const char* in);
+    str255 initStr255(const char* in);
+    
+	// C++ type helpers
+	bool getBoolFromEXTFldVal(EXTfldval& fVal);
+	void getEXTFldValFromBool(EXTfldval& fVal, bool);
+	int getIntFromEXTFldVal(EXTfldval& fVal);
+	void getEXTFldValFromInt(EXTfldval& fVal, int);
+	long getLongFromEXTFldVal(EXTfldval& fVal);
+	void getEXTFldValFromLong(EXTfldval& fVal, long);
+	double getDoubleFromEXTFldVal(EXTfldval& fVal);
+	void getEXTFldValFromDouble(EXTfldval& fVal, double);
+	void getEXTFldValFromConstant(EXTfldval& fVal, qlong constID, qlong prefixID = 0);
+	int getIntFromEXTFldVal(EXTfldval& fVal, qlong firstConstID, qlong lastConstID);
+	
+	// get ISO 8601 std::string from Date
+	std::string getISO8601DateStringFromEXTFldVal(EXTfldval&);
+	
+	// POSIX/HFS Paths
+	qbool ensurePosixPath(EXTfldval&);
+	
+	// ************ TEMPLATES ************ //
+	
+	// Generic method for retrieving an object by it's instance
+	template <class T>
+	T* getObjForInstance(tThreadData* pThreadData, qobjinst inst) {
+		if (!inst) {
+			return 0;
+		}
+		
+		inst = (qobjinst) ECOgetNVObject(inst); // Attempt to get super class for NV Objects that are inherited by Omnis objects
+		if (!inst) {
+			return 0;
+		}
+		
+		LPARAM lparamPtr = (LPARAM) inst;
+		void* omnisPtr = ECOfindNVObject(pThreadData->mEci->mOmnisInstance, lparamPtr);
+		if (!omnisPtr) {
+			return 0;
+		}
+		
+		// Verify that the correct object was retrieved
+		T* retPtr = reinterpret_cast<T*>( omnisPtr );
+		if (retPtr->objResourceId != T::objResourceId ) {
+			return 0;
+		}
+		
+		return retPtr;
+	}
+	
+	// Generic method for setting an EXTfldval with an object
+	template <class T>
+	void getEXTFldValForObj(EXTfldval& fVal, T* obj, qbool asObjRef = qfalse) {
+		if (!obj)
+			return;
+		
+		qobjinst inst = obj->getInstance();
+		
+        if (asObjRef == qtrue) {
+            fVal.setObjRef( inst );
+        } else {
+            fVal.setObjInst( inst, qtrue );
+        }
+        
+	}
+	
+	// Generic method for retrieving an object from it's EXTfldval
+	template <class T>
+	T* getObjForEXTfldval(tThreadData* pThreadData, EXTfldval &fVal) {
+		qobjinst inst;
+		if (getType(fVal).valType == fftObject) {
+			inst = fVal.getObjInst(qfalse);
+		} else if (getType(fVal).valType == fftObjref) {
+			inst = fVal.getObjRef();
+		} else {
+			// Unknown type
+			return 0;
+		}
+		
+		return getObjForInstance<T>(pThreadData, inst);
+	}
+	
+	// Generic method for creating a new object in the Omnis pool
+	template <class T>
+	T* createNVObj(qshort objectType, tThreadData* pThreadData) {
+		qlong saveCompId = pThreadData->mEci->mCompId;  // Save the current comp ID
+		
+		pThreadData->mEci->mCompId = objectType; // Set the comp ID for the NEW object
+		qobjinst newObjInst = EXTobjinst( pThreadData->mEci );  // Create the new object (this calls ECM_OBJCONSTRUCT)
+		
+		pThreadData->mEci->mCompId = saveCompId; // Restore the saved comp ID
+		
+		T* nvObj = getObjForInstance<T>(pThreadData, newObjInst); // Locate the newly created object pointer
+		
+		return nvObj;
+	}
+	
+	// Generic method creating a new object in the Omnis pool from just the object
+	// Requires that T has the static member objResourceId set. (See NVObjBase)
+	template <class T>
+	T* createNVObj(tThreadData* pThreadData) {
+		qshort objectType = T::objResourceId;
+		
+		return createNVObj<T>(objectType, pThreadData);
+	}
+    
+    template<class T>
+    void copyNVObj( qlong propID, objCopyInfo* copyInfo, OmnisTools::tThreadData* pThreadData) {
+        
+        LPARAM source = reinterpret_cast<LPARAM>(ECOgetNVObject( (qobjinst) copyInfo->mSourceObject));
+        T* src = (T*) ECOfindNVObject( pThreadData->mEci->mOmnisInstance, source );
+        if( src )
+        {
+            LPARAM destination = reinterpret_cast<LPARAM>(ECOgetNVObject( (qobjinst) copyInfo->mDestinationObject));
+            
+            T* dest = (T*)ECOfindNVObject( pThreadData->mEci->mOmnisInstance, destination );
+            if( !dest )
+            {
+                dest = (T*) src->dup(propID, (qobjinst)copyInfo->mDestinationObject, pThreadData);
+                ECOinsertNVObject( pThreadData->mEci->mOmnisInstance, copyInfo->mDestinationObject, dest );
+            } else {
+                dest->copy( src );
+            }
+        }
+    }
+}
+	
+#endif // OMNIS_TOOLS_HE_

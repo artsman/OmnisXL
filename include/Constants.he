@@ -1,0 +1,117 @@
+// The MIT License (MIT)
+
+// Copyright (c) 2014 Arts Management Systems Ltd.
+
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
+// Omnis includes
+#include <extcomp.he>
+
+// STL includes
+#include <map>
+
+//LibXL includes
+#include "libxl.h"
+
+#ifndef CONSTANTS_HE
+#define CONSTANTS_HE
+
+namespace LibXLConstants {
+	// Colors
+	static const qlong COLOR_CONST_START = 23150, COLOR_CONST_END = 23207;
+	void buildColorLookup();
+	
+	bool isValidColor(int omnisColorConstant);
+	libxl::Color getColorConstant(int omnisColorConstant);
+	int getOmnisColorConstant(libxl::Color colorConstant);
+	
+	// Number Format
+	static const qlong NUMFORMAT_CONST_START = 23250, NUMFORMAT_CONST_END = 23285;
+	void buildNumFormatLookup();
+	
+	bool isValidNumFormat(int omnisNumFormatConstant);
+	int getNumFormatConstant(int omnisNumFormatConstant);
+	int getOmnisNumFormatConstant(int NumFormatConstant);
+	
+	// Horizontal Align
+	static const qlong HALIGN_CONST_START = 23300, HALIGN_CONST_END = 23307;
+	void buildAlignHLookup();
+	
+	bool isValidAlignH(int omnisAlignHConstant);
+	libxl::AlignH getAlignHConstant(int omnisAlignHConstant);
+	int getOmnisAlignHConstant(libxl::AlignH AlignHConstant);
+	
+	// Vertical Align
+	static const qlong VALIGN_CONST_START = 23350, VALIGN_CONST_END = 23354;
+	void buildAlignVLookup();
+	
+	bool isValidAlignV(int omnisAlignVConstant);
+	libxl::AlignV getAlignVConstant(int omnisAlignVConstant);
+	int getOmnisAlignVConstant(libxl::AlignV AlignVConstant);
+	
+	// Border Style
+	static const qlong BORDER_CONST_START = 23400, BORDER_CONST_END = 23413;
+	void buildBorderStyleLookup();
+	
+	bool isValidBorder(int omnisBorderStyleConstant);
+	libxl::BorderStyle getBorderStyleConstant(int omnisBorderStyleConstant);
+	int getOmnisBorderStyleConstant(libxl::BorderStyle BorderStyleConstant);
+	
+	// Diagonal Border Style
+	static const qlong DIAGONAL_CONST_START = 23450, DIAGONAL_CONST_END = 23453;
+	void buildBorderDiagonalLookup();
+	
+	bool isValidBorderDiagonal(int omnisBorderDiagonalConstant);
+	libxl::BorderDiagonal getBorderDiagonalConstant(int omnisBorderDiagonalConstant);
+	int getOmnisBorderDiagonalConstant(libxl::BorderDiagonal BorderDiagonalConstant);
+	
+	// Fill Pattern Style
+	static const qlong FILLPATTERN_CONST_START = 23500, FILLPATTERN_CONST_END = 23518;
+	void buildFillPatternLookup();
+	
+	bool isValidFillPattern(int omnisFillPatternConstant);
+	libxl::FillPattern getFillPatternConstant(int omnisFillPatternConstant);
+	int getOmnisFillPatternConstant(libxl::FillPattern FillPatternConstant);
+	
+	// Script Style
+	static const qlong SCRIPT_CONST_START = 23550, SCRIPT_CONST_END = 23552;
+	void buildScriptLookup();
+	
+	bool isValidScript(int omnisScriptConstant);
+	libxl::Script getScriptConstant(int omnisScriptConstant);
+	int getOmnisScriptConstant(libxl::Script ScriptConstant);
+	
+	// Underline Style
+	static const qlong UNDERLINE_CONST_START = 23600, UNDERLINE_CONST_END = 23604;
+	void buildUnderlineLookup();
+	
+	bool isValidUnderline(int omnisUnderlineConstant);
+	libxl::Underline getUnderlineConstant(int omnisUnderlineConstant);
+	int getOmnisUnderlineConstant(libxl::Underline underlineConstant);
+	
+	// Paper constant lookup
+	static const qlong PAPER_CONST_START = 23050, PAPER_CONST_END = 23091;
+	void buildPaperLookup();
+	
+	bool isValidPaper(int omnisPaperConstant);
+	libxl::Paper getPaperConstant(int omnisPaperConstant);
+	int getOmnisPaperConstant(libxl::Paper paperConstant);
+}
+
+#endif /* CONSTANTS_HE */

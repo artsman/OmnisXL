@@ -1,0 +1,474 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		96D355F20908DD62006B6436 /* ReleaseBuild */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 96D355F30908DD80006B6436 /* Build configuration list for PBXAggregateTarget "ReleaseBuild" */;
+			buildPhases = (
+			);
+			dependencies = (
+				9658838409BC64BB0063770F /* PBXTargetDependency */,
+			);
+			name = ReleaseBuild;
+			productName = ReleaseBuild;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		96CA4E550907E8CC00C234AA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
+		96CA4E5A0907E8CC00C234AA /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
+		96CA4E660907EB0700C234AA /* u_complib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96CA4E650907EB0700C234AA /* u_complib.framework */; };
+		B02360CC11765D30001236FE /* NVObjBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B02360C911765D30001236FE /* NVObjBase.cpp */; };
+		B02360CD11765D30001236FE /* ExcelFormat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B02360CA11765D30001236FE /* ExcelFormat.cpp */; };
+		B03C1D7B130EDF7700661BC0 /* Static.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B03C1D7A130EDF7700661BC0 /* Static.cpp */; };
+		B06C510E130A8BCC009000B7 /* CellObj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B06C510B130A8BCC009000B7 /* CellObj.cpp */; };
+		B06C510F130A8BCC009000B7 /* FontObj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B06C510C130A8BCC009000B7 /* FontObj.cpp */; };
+		B06C5110130A8BCC009000B7 /* FormatObj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B06C510D130A8BCC009000B7 /* FormatObj.cpp */; };
+		B06F1F86131D30B1008E3A89 /* NumFormatMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B06F1F85131D30B1008E3A89 /* NumFormatMgr.cpp */; };
+		B06FFE8C1305A4E4005EEFED /* WorksheetObj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B06FFE8B1305A4E4005EEFED /* WorksheetObj.cpp */; };
+		B06FFEA71305A6CE005EEFED /* FileObj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B06FFEA61305A6CE005EEFED /* FileObj.cpp */; };
+		B08AAB28135C703000A1A702 /* ExcelFormat.rc in Resources */ = {isa = PBXBuildFile; fileRef = B08CA204132A336800D34D50 /* ExcelFormat.rc */; };
+		B08AAB2E135C723800A1A702 /* libxl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B08AAB2D135C723800A1A702 /* libxl.a */; };
+		B0A46050125F550F003A3050 /* OmnisTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0A4604F125F550F003A3050 /* OmnisTools.cpp */; };
+		B0CDB98F131D74FA00751F93 /* Constants.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B0CDB98E131D74FA00751F93 /* Constants.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		96CA4E5C0907E8CC00C234AA /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.rc";
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+				"$(TEMP_FILE_DIR)/omnisrc/Localizable.strings",
+			);
+			script = "/Developer/Tools/omnisrc.app/Contents/MacOS/omnisrc INPUT_FILE_PATH TEMP_FILE_DIR REZ_SEARCH_PATHS XCOMP\ncp $TEMP_FILE_DIR/omnisrc/xcomp.rsrc $INSTALL_DIR/$CONTENTS_FOLDER_PATH/Resources";
+		};
+/* End PBXBuildRule section */
+
+/* Begin PBXContainerItemProxy section */
+		9658838309BC64BB0063770F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 96CA4E530907E8CC00C234AA;
+			remoteInfo = UnicodeCore;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		089C167EFE841241C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		96CA4E610907E8CC00C234AA /* ExcelFormat.u_xcomp */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExcelFormat.u_xcomp; sourceTree = BUILT_PRODUCTS_DIR; };
+		96CA4E650907EB0700C234AA /* u_complib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = u_complib.framework; path = /Library/Frameworks/u_complib.framework; sourceTree = "<absolute>"; };
+		B02360C911765D30001236FE /* NVObjBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NVObjBase.cpp; path = ../src/NVObjBase.cpp; sourceTree = SOURCE_ROOT; };
+		B02360CA11765D30001236FE /* ExcelFormat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ExcelFormat.cpp; path = ../src/ExcelFormat.cpp; sourceTree = SOURCE_ROOT; };
+		B02360CF11765D3A001236FE /* NVObjBase.he */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = NVObjBase.he; path = ../include/NVObjBase.he; sourceTree = SOURCE_ROOT; };
+		B02360D011765D3A001236FE /* ExcelFormat.he */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = ExcelFormat.he; path = ../include/ExcelFormat.he; sourceTree = SOURCE_ROOT; };
+		B03C1D78130EDF5600661BC0 /* Static.he */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = Static.he; path = ../include/Static.he; sourceTree = SOURCE_ROOT; };
+		B03C1D7A130EDF7700661BC0 /* Static.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Static.cpp; path = ../src/Static.cpp; sourceTree = SOURCE_ROOT; };
+		B06C510B130A8BCC009000B7 /* CellObj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CellObj.cpp; path = ../src/CellObj.cpp; sourceTree = SOURCE_ROOT; };
+		B06C510C130A8BCC009000B7 /* FontObj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FontObj.cpp; path = ../src/FontObj.cpp; sourceTree = SOURCE_ROOT; };
+		B06C510D130A8BCC009000B7 /* FormatObj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FormatObj.cpp; path = ../src/FormatObj.cpp; sourceTree = SOURCE_ROOT; };
+		B06C5111130A8BF2009000B7 /* CellObj.he */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = CellObj.he; path = ../include/CellObj.he; sourceTree = SOURCE_ROOT; };
+		B06C5112130A8BF2009000B7 /* FontObj.he */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = FontObj.he; path = ../include/FontObj.he; sourceTree = SOURCE_ROOT; };
+		B06C5113130A8BF2009000B7 /* FormatObj.he */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = FormatObj.he; path = ../include/FormatObj.he; sourceTree = SOURCE_ROOT; };
+		B06F1F85131D30B1008E3A89 /* NumFormatMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NumFormatMgr.cpp; path = ../src/NumFormatMgr.cpp; sourceTree = SOURCE_ROOT; };
+		B06F1F87131D3114008E3A89 /* NumFormatMgr.he */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = NumFormatMgr.he; path = ../include/NumFormatMgr.he; sourceTree = SOURCE_ROOT; };
+		B06FFE841305A406005EEFED /* enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = enum.h; path = ../include/LibXL/enum.h; sourceTree = SOURCE_ROOT; };
+		B06FFE851305A406005EEFED /* IBookT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IBookT.h; path = ../include/LibXL/IBookT.h; sourceTree = SOURCE_ROOT; };
+		B06FFE861305A406005EEFED /* IFontT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IFontT.h; path = ../include/LibXL/IFontT.h; sourceTree = SOURCE_ROOT; };
+		B06FFE871305A406005EEFED /* IFormatT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IFormatT.h; path = ../include/LibXL/IFormatT.h; sourceTree = SOURCE_ROOT; };
+		B06FFE881305A406005EEFED /* ISheetT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ISheetT.h; path = ../include/LibXL/ISheetT.h; sourceTree = SOURCE_ROOT; };
+		B06FFE891305A406005EEFED /* libxl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libxl.h; path = ../include/LibXL/libxl.h; sourceTree = SOURCE_ROOT; };
+		B06FFE8A1305A406005EEFED /* setup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = setup.h; path = ../include/LibXL/setup.h; sourceTree = SOURCE_ROOT; };
+		B06FFE8B1305A4E4005EEFED /* WorksheetObj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WorksheetObj.cpp; path = ../src/WorksheetObj.cpp; sourceTree = SOURCE_ROOT; };
+		B06FFE8D1305A4EF005EEFED /* WorksheetObj.he */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = WorksheetObj.he; path = ../include/WorksheetObj.he; sourceTree = SOURCE_ROOT; };
+		B06FFEA61305A6CE005EEFED /* FileObj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FileObj.cpp; path = ../src/FileObj.cpp; sourceTree = SOURCE_ROOT; };
+		B06FFEA81305A6D6005EEFED /* FileObj.he */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = FileObj.he; path = ../include/FileObj.he; sourceTree = SOURCE_ROOT; };
+		B08AAB2D135C723800A1A702 /* libxl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libxl.a; path = ../platform/Mac/libxl.a; sourceTree = "<group>"; };
+		B08CA204132A336800D34D50 /* ExcelFormat.rc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ExcelFormat.rc; path = ../resource/ExcelFormat.rc; sourceTree = "<group>"; };
+		B0A4604F125F550F003A3050 /* OmnisTools.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OmnisTools.cpp; path = ../src/OmnisTools.cpp; sourceTree = SOURCE_ROOT; };
+		B0A46051125F5517003A3050 /* OmnisTools.he */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = OmnisTools.he; path = ../include/OmnisTools.he; sourceTree = SOURCE_ROOT; };
+		B0C53F6613619BC50096C4DD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B0CDB98C131D74A500751F93 /* Constants.he */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = Constants.he; path = ../include/Constants.he; sourceTree = SOURCE_ROOT; };
+		B0CDB98E131D74FA00751F93 /* Constants.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Constants.cpp; path = ../src/Constants.cpp; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		96CA4E590907E8CC00C234AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96CA4E5A0907E8CC00C234AA /* Carbon.framework in Frameworks */,
+				96CA4E660907EB0700C234AA /* u_complib.framework in Frameworks */,
+				B08AAB2E135C723800A1A702 /* libxl.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		089C166AFE841209C02AAC07 /* xrandom */ = {
+			isa = PBXGroup;
+			children = (
+				96D631340905093100E0F291 /* Headers */,
+				08FB77ADFE841716C02AAC07 /* Source */,
+				089C167CFE841241C02AAC07 /* Resources */,
+				089C1671FE841209C02AAC07 /* External Frameworks and Libraries */,
+				19C28FB4FE9D528D11CA2CBB /* Products */,
+			);
+			name = xrandom;
+			sourceTree = "<group>";
+		};
+		089C1671FE841209C02AAC07 /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				B08AAB2D135C723800A1A702 /* libxl.a */,
+				96CA4E650907EB0700C234AA /* u_complib.framework */,
+				08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */,
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		089C167CFE841241C02AAC07 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B0C53F6613619BC50096C4DD /* Info.plist */,
+				B08CA204132A336800D34D50 /* ExcelFormat.rc */,
+				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		08FB77ADFE841716C02AAC07 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				B02360CA11765D30001236FE /* ExcelFormat.cpp */,
+				B03C1D7A130EDF7700661BC0 /* Static.cpp */,
+				B0A4604F125F550F003A3050 /* OmnisTools.cpp */,
+				B02360C911765D30001236FE /* NVObjBase.cpp */,
+				B06FFEA61305A6CE005EEFED /* FileObj.cpp */,
+				B06FFE8B1305A4E4005EEFED /* WorksheetObj.cpp */,
+				B06C510B130A8BCC009000B7 /* CellObj.cpp */,
+				B06C510C130A8BCC009000B7 /* FontObj.cpp */,
+				B06C510D130A8BCC009000B7 /* FormatObj.cpp */,
+				B06F1F85131D30B1008E3A89 /* NumFormatMgr.cpp */,
+				B0CDB98E131D74FA00751F93 /* Constants.cpp */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		19C28FB4FE9D528D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				96CA4E610907E8CC00C234AA /* ExcelFormat.u_xcomp */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		96D631340905093100E0F291 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				B060AAAE130598B8006548F2 /* LibXL-Headers */,
+				B02360D011765D3A001236FE /* ExcelFormat.he */,
+				B03C1D78130EDF5600661BC0 /* Static.he */,
+				B0A46051125F5517003A3050 /* OmnisTools.he */,
+				B02360CF11765D3A001236FE /* NVObjBase.he */,
+				B06FFEA81305A6D6005EEFED /* FileObj.he */,
+				B06FFE8D1305A4EF005EEFED /* WorksheetObj.he */,
+				B06C5111130A8BF2009000B7 /* CellObj.he */,
+				B06C5112130A8BF2009000B7 /* FontObj.he */,
+				B06C5113130A8BF2009000B7 /* FormatObj.he */,
+				B06F1F87131D3114008E3A89 /* NumFormatMgr.he */,
+				B0CDB98C131D74A500751F93 /* Constants.he */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+		B060AAAE130598B8006548F2 /* LibXL-Headers */ = {
+			isa = PBXGroup;
+			children = (
+				B06FFE841305A406005EEFED /* enum.h */,
+				B06FFE851305A406005EEFED /* IBookT.h */,
+				B06FFE861305A406005EEFED /* IFontT.h */,
+				B06FFE871305A406005EEFED /* IFormatT.h */,
+				B06FFE881305A406005EEFED /* ISheetT.h */,
+				B06FFE891305A406005EEFED /* libxl.h */,
+				B06FFE8A1305A406005EEFED /* setup.h */,
+			);
+			name = "LibXL-Headers";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		96CA4E530907E8CC00C234AA /* UnicodeCore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 96CA4E5D0907E8CC00C234AA /* Build configuration list for PBXNativeTarget "UnicodeCore" */;
+			buildPhases = (
+				96CA4E540907E8CC00C234AA /* Resources */,
+				96CA4E570907E8CC00C234AA /* Sources */,
+				96CA4E590907E8CC00C234AA /* Frameworks */,
+			);
+			buildRules = (
+				96CA4E5C0907E8CC00C234AA /* PBXBuildRule */,
+			);
+			dependencies = (
+			);
+			name = UnicodeCore;
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = xrandom;
+			productReference = 96CA4E610907E8CC00C234AA /* ExcelFormat.u_xcomp */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		089C1669FE841209C02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0410;
+			};
+			buildConfigurationList = 96CF455E08FBABD1003AA3FE /* Build configuration list for PBXProject "ExcelFormat" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+				english,
+			);
+			mainGroup = 089C166AFE841209C02AAC07 /* xrandom */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				96CA4E530907E8CC00C234AA /* UnicodeCore */,
+				96D355F20908DD62006B6436 /* ReleaseBuild */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		96CA4E540907E8CC00C234AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B08AAB28135C703000A1A702 /* ExcelFormat.rc in Resources */,
+				96CA4E550907E8CC00C234AA /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		96CA4E570907E8CC00C234AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B02360CD11765D30001236FE /* ExcelFormat.cpp in Sources */,
+				B02360CC11765D30001236FE /* NVObjBase.cpp in Sources */,
+				B0A46050125F550F003A3050 /* OmnisTools.cpp in Sources */,
+				B06FFE8C1305A4E4005EEFED /* WorksheetObj.cpp in Sources */,
+				B06FFEA71305A6CE005EEFED /* FileObj.cpp in Sources */,
+				B06C510E130A8BCC009000B7 /* CellObj.cpp in Sources */,
+				B06C510F130A8BCC009000B7 /* FontObj.cpp in Sources */,
+				B06C5110130A8BCC009000B7 /* FormatObj.cpp in Sources */,
+				B03C1D7B130EDF7700661BC0 /* Static.cpp in Sources */,
+				B06F1F86131D30B1008E3A89 /* NumFormatMgr.cpp in Sources */,
+				B0CDB98F131D74FA00751F93 /* Constants.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9658838409BC64BB0063770F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 96CA4E530907E8CC00C234AA /* UnicodeCore */;
+			targetProxy = 9658838309BC64BB0063770F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		089C167DFE841241C02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C167EFE841241C02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		96CA4E5E0907E8CC00C234AA /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../platform/Mac\"";
+			};
+			name = Development;
+		};
+		96CA4E5F0907E8CC00C234AA /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../platform/Mac\"";
+			};
+			name = Deployment;
+		};
+		96CF455F08FBABD1003AA3FE /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(OMNIS_XCOMP_PATH)";
+				FRAMEWORK_SEARCH_PATHS = "$(OMNIS_LIB_PATH)/complib";
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(OMNIS_LIB_PATH)/complib/u_complib.framework/Headers/carbnuni.h";
+				GCC_VERSION = 4.2;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_PKGINFO_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					$PROJECT_DIR/../include,
+					/Developer/Headers/FlatCarbon,
+					"$(BOOST_ROOT)",
+					"$(OMNIS_LIB_PATH)/complib/u_complib.framework/Headers",
+				);
+				INFOPLIST_FILE = $PROJECT_DIR/Info.plist;
+				INSTALL_PATH = /;
+				LIBRARY_SEARCH_PATHS = (
+					"$(BOOST_ROOT)/stage/lib",
+					"$(PROJECT_DIR)/../platform/Mac",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				OTHER_CFLAGS = (
+					"-Dismach_o",
+					"-Dismach-o",
+					"-D_UNICODE",
+					"-DLIBXL_STATIC",
+				);
+				PRODUCT_NAME = ExcelFormat;
+				REZ_SEARCH_PATHS = (
+					$PROJECT_DIR/../resource,
+					/Developer/Headers/FlatCarbon,
+					$PROJECT_DIR/English.lproj,
+				);
+				SDKROOT = macosx10.5;
+				VALID_ARCHS = "i386 x86_64 ppc";
+				WRAPPER_EXTENSION = u_xcomp;
+			};
+			name = Development;
+		};
+		96CF456008FBABD1003AA3FE /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					i386,
+					ppc,
+				);
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(PROJECT_DIR)/../deploy/Mac";
+				FRAMEWORK_SEARCH_PATHS = "$(OMNIS_LIB_PATH)/complib";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(OMNIS_LIB_PATH)/complib/u_complib.framework/Headers/carbnuni.h";
+				GCC_VERSION = 4.2;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_PKGINFO_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					$PROJECT_DIR/../include,
+					/Developer/Headers/FlatCarbon,
+					"$(BOOST_ROOT)",
+					"$(OMNIS_LIB_PATH)/complib/u_complib.framework/Headers",
+				);
+				INFOPLIST_FILE = $PROJECT_DIR/Info.plist;
+				INSTALL_PATH = /;
+				LIBRARY_SEARCH_PATHS = (
+					"$(BOOST_ROOT)/stage/lib",
+					"$(PROJECT_DIR)/../platform/Mac",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				OTHER_CFLAGS = (
+					"-Dismach_o",
+					"-Dismach-o",
+					"-D_UNICODE",
+					"-DLIBXL_STATIC",
+				);
+				PRODUCT_NAME = ExcelFormat;
+				REZ_SEARCH_PATHS = (
+					$PROJECT_DIR/../resource,
+					/Developer/Headers/FlatCarbon,
+					$PROJECT_DIR/English.lproj,
+				);
+				SDKROOT = macosx10.5;
+				VALID_ARCHS = "i386 x86_64 ppc";
+				WRAPPER_EXTENSION = u_xcomp;
+			};
+			name = Deployment;
+		};
+		96D355F40908DD80006B6436 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Development;
+		};
+		96D355F50908DD80006B6436 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Deployment;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		96CA4E5D0907E8CC00C234AA /* Build configuration list for PBXNativeTarget "UnicodeCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96CA4E5E0907E8CC00C234AA /* Development */,
+				96CA4E5F0907E8CC00C234AA /* Deployment */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Development;
+		};
+		96CF455E08FBABD1003AA3FE /* Build configuration list for PBXProject "ExcelFormat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96CF455F08FBABD1003AA3FE /* Development */,
+				96CF456008FBABD1003AA3FE /* Deployment */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Development;
+		};
+		96D355F30908DD80006B6436 /* Build configuration list for PBXAggregateTarget "ReleaseBuild" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96D355F40908DD80006B6436 /* Development */,
+				96D355F50908DD80006B6436 /* Deployment */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Development;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 089C1669FE841209C02AAC07 /* Project object */;
+}

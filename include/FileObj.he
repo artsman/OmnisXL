@@ -1,0 +1,144 @@
+// The MIT License (MIT)
+
+// Copyright (c) 2014 Arts Management Systems Ltd.
+
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
+#include <extcomp.he>
+#include "NVObjBase.he"
+#include "OmnisTools.he"
+#include "NumFormatMgr.he"
+
+// String
+#include <string>
+
+//Boost includes
+#include <Boost/smart_ptr.hpp>
+
+//LibXL includes
+#include "libxl.h"
+
+#ifndef NVOBJ_WORKBOOK_HE
+#define NVOBJ_WORKBOOK_HE
+
+// Conversion methods
+struct XLDateFormat {
+	double date;
+	int format;
+};
+
+// Class definition for C++ version of your object
+class NVObjWorkbook : public NVObjBase
+{
+public:		
+	// Static tracking variable
+	static qshort objResourceId;  // This static variable needs to be in all inherited object
+	
+	// Constructor / Destructor
+	NVObjWorkbook( qobjinst qo, OmnisTools::tThreadData *pThreadData );
+	virtual ~NVObjWorkbook();
+	
+    // Copy
+	virtual void copy( NVObjWorkbook* pObj );
+
+	// Methods Available and Method Call Handling
+	virtual qlong returnMethods( OmnisTools::tThreadData* pThreadData );
+	virtual qlong methodCall( OmnisTools::tThreadData* pThreadData );
+
+	// Properties and Property Call Handling
+	virtual qlong returnProperties( OmnisTools::tThreadData* pThreadData );
+	virtual qlong getProperty( OmnisTools::tThreadData* pThreadData );
+	virtual qlong setProperty( OmnisTools::tThreadData* pThreadData );
+	virtual qlong canAssignProperty( OmnisTools::tThreadData* pThreadData, qlong propID );
+	
+	virtual std::string translateObjectError( OmnisTools::tResult pError );
+	
+	// Static license vars
+	static std::wstring licenseName;
+	static std::wstring licenseKey;
+	
+	// Internal C++ methods
+	static XLDateFormat getDateForEXTFldVal(EXTfldval& fVal, boost::shared_ptr<libxl::Book> bk);
+	static void getEXTFldValForDate(EXTfldval& fVal, XLDateFormat packedDate, boost::shared_ptr<libxl::Book> bk);
+	
+	static int getColNumber(EXTfldval&);
+	static void getColNameForColNumber(EXTfldval& colName, int colNum);
+	static int getColNumberForColName(EXTfldval& colName);
+	
+	boost::shared_ptr<NumFormatMgr> getNumFormatMgr() { return numFormats; }
+private:
+	// Omnis Visible Methods
+	OmnisTools::tResult methodInitialize( OmnisTools::tThreadData* pThreadData, qshort pParamCount );
+	OmnisTools::tResult methodLoad( OmnisTools::tThreadData* pThreadData, qshort pParamCount );
+	OmnisTools::tResult methodSave( OmnisTools::tThreadData* pThreadData, qshort pParamCount );
+	OmnisTools::tResult methodLoadRaw( OmnisTools::tThreadData* pThreadData, qshort pParamCount );
+	OmnisTools::tResult methodSaveRaw( OmnisTools::tThreadData* pThreadData, qshort pParamCount );
+	OmnisTools::tResult methodAddSheet( OmnisTools::tThreadData* pThreadData, qshort pParamCount );
+	OmnisTools::tResult methodGetSheet( OmnisTools::tThreadData* pThreadData, qshort pParamCount );
+	OmnisTools::tResult methodDelSheet( OmnisTools::tThreadData* pThreadData, qshort pParamCount );
+	OmnisTools::tResult methodAddFormat( OmnisTools::tThreadData* pThreadData, qshort pParamCount );
+	OmnisTools::tResult methodAddFont( OmnisTools::tThreadData* pThreadData, qshort pParamCount );
+	OmnisTools::tResult methodAddCustomNumFormat( OmnisTools::tThreadData* pThreadData, qshort pParamCount );
+	OmnisTools::tResult methodCustomNumFormat( OmnisTools::tThreadData* pThreadData, qshort pParamCount );
+	OmnisTools::tResult methodFormat( OmnisTools::tThreadData* pThreadData, qshort pParamCount );
+	OmnisTools::tResult methodFont( OmnisTools::tThreadData* pThreadData, qshort pParamCount );
+	OmnisTools::tResult methodAddPicture( OmnisTools::tThreadData* pThreadData, qshort pParamCount );
+	OmnisTools::tResult methodAddPictureRaw( OmnisTools::tThreadData* pThreadData, qshort pParamCount );
+	OmnisTools::tResult methodPopulateFromList( OmnisTools::tThreadData* pThreadData, qshort pParamCount );
+	OmnisTools::tResult methodExtractList( OmnisTools::tThreadData* pThreadData, qshort pParamCount );
+	
+	// Internal methods
+	void initialize();
+	bool readValueFromSheet(EXTfldval& cellValue, libxl::Sheet* sheet, qlong curRow, qshort curCol);
+	bool writeValueToSheet(libxl::Sheet* sheet, qlong curRow, qshort curCol, EXTfldval& cellValue, libxl::Format* pFormat = 0);
+	
+	// Class Members
+	boost::shared_ptr<NumFormatMgr> numFormats;
+	boost::shared_ptr<libxl::Book> book;
+	short fileType; // 0 = xls document (default), 1 = xlsx document
+	
+	
+	// CONSTANTS
+	// ------------------------------------------------
+	// $initialize
+	const static int XLS_FORMAT  = 10, // kXLxls
+	                 XLSX_FORMAT = 11;  // kXLxlsx;
+	
+	// $populateFromList
+	const static int POP_STYLE_NO_HEADER         = 0, // kXLPopulateNoHeader
+                     POP_STYLE_DEFINITION_HEADER = 1, // kXLPopulateDefinitionHeader
+	                 POP_STYLE_CUSTOM_HEADER     = 2, // kXLPopulateCustomHeader
+                     POP_STYLE_CUSTOM_HEADER_FMT = 3; // kXLPopulateCustomHeaderAndFormat
+	
+	// $extractList
+	const static int EXTRACT_STYLE_NO_HEADER        = 0, // kXLExtractNoHeader
+                     EXTRACT_STYLE_IGNORE_HEADER    = 1, // kXLExtractIgnoreHeader
+	                 EXTRACT_STYLE_USE_HEADER       = 2, // kXLExtractUseHeader
+	                 EXTRACT_STYLE_CUSTOM_DEFINE    = 3, // kXLExtractCustomDefine
+	                 EXTRACT_STYLE_CUSTOM_DEFINE_IH = 4, // kXLExtractCustomDefineIgnoreHeader
+                     EXTRACT_STYLE_MAP_FROM_HEADER  = 5; // kXLExtractMapFromHeader
+	
+	// CONSTANTS
+	// ------------------------------------------------
+	const static int ERR_BAD_METHOD	     =-101,
+	                 ERR_BAD_PARAMS	     =-102;
+	
+};
+
+#endif /* NVOBJ_WORKBOOK_HE */

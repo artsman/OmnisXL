@@ -1,0 +1,115 @@
+// The MIT License (MIT)
+
+// Copyright (c) 2014 Arts Management Systems Ltd.
+
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
+#include <extcomp.he>
+#include "NVObjBase.he"
+#include "OmnisTools.he"
+#include "NumFormatMgr.he"
+
+// STL includes
+#include <map>
+
+//Boost includes
+#include <Boost/smart_ptr.hpp>
+
+//LibXL includes
+#include "libxl.h"
+
+#ifndef NVOBJ_CELL_HE
+#define NVOBJ_CELL_HE
+
+// Class definition for C++ version of your object
+class NVObjCell : public NVObjBase
+{
+public:		
+	// Static tracking variable
+	static qshort objResourceId;  // This static variable needs to be in all inherited objects
+	
+	// Constructor / Destructor
+	NVObjCell( qobjinst qo, OmnisTools::tThreadData *pThreadData );
+	virtual ~NVObjCell();
+    
+    // Copy
+    virtual void copy( NVObjCell* pObj );
+    
+	// Methods Available and Method Call Handling
+	virtual qlong returnMethods( OmnisTools::tThreadData* pThreadData );
+	virtual qlong methodCall( OmnisTools::tThreadData* pThreadData );
+
+	// Properties and Property Call Handling
+	virtual qlong returnProperties( OmnisTools::tThreadData* pThreadData );
+	virtual qlong getProperty( OmnisTools::tThreadData* pThreadData );
+	virtual qlong setProperty( OmnisTools::tThreadData* pThreadData );
+	virtual qlong canAssignProperty( OmnisTools::tThreadData* pThreadData, qlong propID );
+	
+	bool checkDependencies();
+	boost::shared_ptr<NumFormatMgr> getNumFormatMgr();
+	boost::shared_ptr<libxl::Book> getBook();
+	libxl::Sheet* getSheet();
+	int getRow();
+	int getCol();
+	
+	void setDependencies(boost::shared_ptr<NumFormatMgr>, boost::shared_ptr<libxl::Book>, libxl::Sheet*, int, int);
+	void setNumFormatMgr(boost::shared_ptr<NumFormatMgr>);
+	void setBook(boost::shared_ptr<libxl::Book>);
+	void setSheet(libxl::Sheet*);
+	void setRow(int);
+	void setCol(int);
+private:
+	// Omnis Visible Methods
+	OmnisTools::tResult methodSetPicture( OmnisTools::tThreadData* pThreadData, qshort pParamCount );
+	OmnisTools::tResult methodSetValue( OmnisTools::tThreadData* pThreadData, qshort pParamCount );
+	OmnisTools::tResult methodClear( OmnisTools::tThreadData* pThreadData, qshort pParamCount );
+	OmnisTools::tResult methodSetComment( OmnisTools::tThreadData* pThreadData, qshort pParamCount );
+    OmnisTools::tResult methodReadFormula( OmnisTools::tThreadData* pThreadData, qshort pParamCount );
+    OmnisTools::tResult methodWriteFormula( OmnisTools::tThreadData* pThreadData, qshort pParamCount );
+	
+	// Internal Methods
+	void getEXTfldvalForCell(EXTfldval& cellValue);
+	void setCellForEXTfldval(EXTfldval& cellValue, int cellType = -1, libxl::Format* fmt = 0);
+	
+	int row, col; // Tracking for which row and column this cell is.
+	
+	boost::shared_ptr<NumFormatMgr> numFormats;
+	boost::shared_ptr<libxl::Book> book;
+	libxl::Sheet* sheet;
+	
+	// Type constants -- NOTE: There is a mismatch between LibXL constants and these due to special handling for some
+	static const int kCellTypeEmpty   = 1, // CELLTYPE_EMPTY
+	                 kCellTypeNumber  = 2, // CELLTYPE_NUMBER
+	                 kCellTypeString  = 3, // CELLTYPE_STRING
+	                 kCellTypeBoolean = 4, // CELLTYPE_BOOLEAN
+	                 kCellTypeDate    = 5, // Worksheet::isDate(row, col)
+	                 kCellTypeBlank   = 6, // CELLTYPE_BLANK
+	                 kCellTypeError   = 7; // CELLTYPE_ERROR
+	
+	// Paper constant lookup
+	static std::map<int, libxl::ErrorType> errorTypeLookup;
+	static std::map<libxl::ErrorType, int> omnisErrorTypeLookup;
+	void buildErrorTypeLookup();
+	
+	libxl::ErrorType getErrorTypeConstant(int);
+	int getOmnisErrorTypeConstant(libxl::ErrorType);
+};
+	
+
+#endif /* NVOBJ_CELL_HE */

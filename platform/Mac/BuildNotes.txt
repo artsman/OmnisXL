@@ -1,0 +1,19 @@
+------------------------------------------
+BUILD NOTES
+------------------------------------------
+
+When Dmytro Skrypnyk <support@libxl.com> provides static libraries for new versions of libxl he provides
+two .a files (By request).  One for PowerPC and one for Intel.  You must use the lipo tool to put them into a 
+single Universal archive before adding it to the XCode project.
+
+lipo -arch ppc libxl-ppc.a -arch i386 libxl-x86.a -create -output libxl.a
+
+You can verify the result by using the "file" command:
+
+Command:
+file libxl.a
+
+Output:
+> libxl.a: Mach-O universal binary with 2 architectures
+> libxl.a (for architecture ppc):	current ar archive random library
+> libxl.a (for architecture i386):	current ar archive random library

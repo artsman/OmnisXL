@@ -1,0 +1,4 @@
+LIBRARY         ExcelFormat
+EXPORTS
+    NVObjWndProc  @1
+ 
