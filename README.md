@@ -1,4 +1,4 @@
 OmnisXL
 =======
 
-Omnis Studio wrapper for the libxl C library
+Omnis Studio wrapper for the libxl C library (http://libxl.com/)
