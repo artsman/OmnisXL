@@ -381,10 +381,7 @@
 		96CF456008FBABD1003AA3FE /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					i386,
-					ppc,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(PROJECT_DIR)/../deploy/Mac";
 				FRAMEWORK_SEARCH_PATHS = "$(OMNIS_LIB_PATH)/complib";

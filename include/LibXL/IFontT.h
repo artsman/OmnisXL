@@ -32,6 +32,8 @@ namespace libxl {
 
         virtual const TCHAR* XLAPIENTRY name() const = 0;
         virtual         bool XLAPIENTRY setName(const TCHAR* name) = 0;
+
+        virtual                         ~IFontT() {}
     };
 
 }

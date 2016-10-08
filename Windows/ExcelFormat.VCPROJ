@@ -176,7 +176,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="odbc32.lib odbccp32.lib omnisu.lib libxl-debug.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib omnisu.lib libxl.lib"
 				OutputFile="$(outdir)/$(ProjectName).dll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
@@ -333,7 +333,15 @@
 					>
 				</File>
 				<File
+					RelativePath="..\include\LibXL\IAutoFilterT.h"
+					>
+				</File>
+				<File
 					RelativePath="..\include\LibXL\IBookT.h"
+					>
+				</File>
+				<File
+					RelativePath="..\include\LibXL\IFilterColumnT.h"
 					>
 				</File>
 				<File

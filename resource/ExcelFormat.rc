@@ -19,6 +19,7 @@ BEGIN
 		 
 		 // Static Methods
 		 1900									"$setKey:$setKey(Character name, Character key) Sets the license key to use."
+		 1901									"$libXLVersion:$libXLVersion() Returns version number of LibXL that this library is compiled against."
 		 
 		 // Static Method Params
 		 1950									"name"

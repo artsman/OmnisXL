@@ -23,6 +23,7 @@ namespace libxl {
         virtual  ISheetT<TCHAR>* XLAPIENTRY addSheet(const TCHAR* name, ISheetT<TCHAR>* initSheet = 0) = 0;
         virtual  ISheetT<TCHAR>* XLAPIENTRY insertSheet(int index, const TCHAR* name, ISheetT<TCHAR>* initSheet = 0) = 0;
         virtual  ISheetT<TCHAR>* XLAPIENTRY getSheet(int index) const = 0;
+        virtual        SheetType XLAPIENTRY sheetType(int index) const = 0;
         virtual             bool XLAPIENTRY delSheet(int index) = 0;
         virtual              int XLAPIENTRY sheetCount() const = 0;
 
@@ -63,12 +64,21 @@ namespace libxl {
         virtual             bool XLAPIENTRY rgbMode() = 0;
         virtual             void XLAPIENTRY setRgbMode(bool rgbMode = true) = 0;
 
+        virtual              int XLAPIENTRY version() const = 0;
         virtual              int XLAPIENTRY biffVersion() const = 0;
+
+        virtual             bool XLAPIENTRY isDate1904() const = 0;
+        virtual             void XLAPIENTRY setDate1904(bool date1904 = true) = 0;
+
+        virtual             bool XLAPIENTRY isTemplate() const = 0;
+        virtual             void XLAPIENTRY setTemplate(bool tmpl = true) = 0;
 
         virtual             bool XLAPIENTRY setLocale(const char* locale) = 0;
         virtual      const char* XLAPIENTRY errorMessage() const = 0;
 
         virtual             void XLAPIENTRY release() = 0;
+
+        virtual                             ~IBookT() {}
     };
 
 }

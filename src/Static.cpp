@@ -27,8 +27,11 @@
 
 using namespace OmnisTools;
 
+#define LIBXL_STRING_VERSION "3.07.001"   // Compare with libxl.h hex version
+
 // Define static methods
 const static qshort cStaticMethodSetKey = 1900;
+const static qshort cStaticMethodLibXLVersion = 1901;
 
 // Parameters for Static Methods
 // Columns are:
@@ -53,7 +56,8 @@ ECOparam cStaticMethodsParamsTable[] =
 // 7) Enum Stop (Not sure what this does, 0 = disabled)
 ECOmethodEvent cStaticMethodsTable[] = 
 {
-	cStaticMethodSetKey, cStaticMethodSetKey, fftNone, 2, &cStaticMethodsParamsTable[0], 0, 0
+	cStaticMethodSetKey, cStaticMethodSetKey, fftNone, 2, &cStaticMethodsParamsTable[0], 0, 0,
+	cStaticMethodLibXLVersion, cStaticMethodLibXLVersion, fftNone, 0, 0, 0, 0
 };
 
 // List of methods in Simple
@@ -82,6 +86,18 @@ void methodSetKey(tThreadData* pThreadData, qshort paramCount) {
 	return;
 }
 
+// Implementation of single static method
+void methodLibXLVersion(tThreadData* pThreadData, qshort paramCount) {	
+	
+    EXTfldval fValReturn;
+
+	getEXTFldValFromString(fValReturn, LIBXL_STRING_VERSION);
+
+    ECOaddParam(pThreadData->mEci, &fValReturn);
+
+	return;
+}
+
 // Static method dispatch
 qlong staticMethodCall( OmnisTools::tThreadData* pThreadData ) {
 	
@@ -93,6 +109,11 @@ qlong staticMethodCall( OmnisTools::tThreadData* pThreadData ) {
 		case cStaticMethodSetKey:
 			pThreadData->mCurMethodName = "$setKey";
 			methodSetKey(pThreadData, paramCount);
+			break;
+
+		case cStaticMethodLibXLVersion:
+			pThreadData->mCurMethodName = "$libXLVersion";
+			methodLibXLVersion(pThreadData, paramCount);
 			break;
 	}
 	

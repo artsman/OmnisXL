@@ -85,6 +85,8 @@ namespace libxl {
 
         virtual           bool XLAPIENTRY hidden() const = 0;
         virtual           void XLAPIENTRY setHidden(bool hidden = true) = 0;
+
+        virtual                           ~IFormatT() {}
     };
 
 }

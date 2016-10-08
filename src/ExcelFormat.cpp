@@ -41,7 +41,7 @@ using OmnisTools::tThreadData;
 // Version Information
 // 1.0 -- Adapted from Generic
 #define VERSION_MAJOR 2
-#define VERSION_MINOR 2
+#define VERSION_MINOR 3
 
 // Resource # for object group.
 const static qshort cNVObjGroup = 1001;
